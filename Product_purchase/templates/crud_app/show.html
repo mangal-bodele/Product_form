@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}
+    <title>Title</title>
+{% endblock %}
+{% block content %}
+    <table class="table table-success text-center border border-3 border-info w-75 m-auto mt-5 p-3">
+        <thead>
+            <tr class="table-dark">
+                <th>Id</th>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Address</th>
+                <th>Mode</th>
+                <th colspan="2" class="text-center ">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+                <tr>
+                    <td>{{ product.id }}</td>
+                    <td class="table-danger">{{ product.product_name }}</td>
+                    <td class="table-warning">{{ product.product_price }}</td>
+                    <td class="p-3 mb-2 bg-danger text-white">{{ product.product_quantity }}</td>
+                    <td class="table-secondary">{{ product.delivery_address }}</td>
+                    <td class="p-3 mb-2 bg-success text-white">{{ product.mode }}</td>
+                    <td class="p-3 mb-2 bg-warning text-dark">
+                        <a href="{% url 'update_url' product.id %}">
+                            <button><i class="bi bi-pencil-square"></i>&nbsp Update</button>
+                        </a>
+                    </td >
+                    <td class="p-3 mb-2 bg-info text-dark">
+                        <a href="{% url 'cancel_url' product.id %}">
+                            <button><i class="bi bi-trash3"></i>&nbsp Delete</button>
+                        </a>
+                    </td>
+
+                </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+{% endblock %}
